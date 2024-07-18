@@ -1,17 +1,15 @@
 import { notFound } from 'next/navigation'
 import { getMeal } from '@/lib/meals'
 
-
 import classes from './page.module.css'
 import Image from 'next/image'
-
 
 export default function MealDetails({ params }) {
 	const meal = getMeal(params.mealSlug)
 
-    if(!meal){
-        notFound()
-    }
+	if (!meal) {
+		notFound()
+	}
 
 	meal.instructions = meal.instructions.replace(/\n/g, '<br />')
 
@@ -19,7 +17,7 @@ export default function MealDetails({ params }) {
 		<>
 			<header className={classes.header}>
 				<div className={classes.image}>
-					<Image src={meal.image} alt={meal.title} fill />
+					<Image src={`https://jakubpalka-nextjs-demo-user-image.s3.amazonaws.com/${image}`} alt={meal.title} fill />
 				</div>
 				<div className={classes.headerText}>
 					<h1>{meal.title}</h1>
